@@ -15,9 +15,9 @@ app.get("/",function(req,res){
 
 app.post ("/",function(req,res){
    
-    var firstName = req.body.fName;
-    var lastName = req.body.lName;
-    var email = req.body.email;
+    const firstName = req.body.fName;
+    const lastName = req.body.lName;
+    const email = req.body.email;
 
     console.log(firstName,lastName,email);
 
@@ -49,7 +49,8 @@ const request   = https.request(url,options,function(response){
         res.sendFile(__dirname + "/success.html");
     }
     else {
-        res.sendFile(__dirname + "/failure.html");;
+        res.sendFile(__dirname + "/failure.html");
+        console.log(response.statusCode );
     }
 
     
@@ -57,8 +58,8 @@ const request   = https.request(url,options,function(response){
 
     response.on("data",function(data){
         console.log(JSON.parse(data));
-    })
-})
+    });
+});
 
 request.write(jsonData);
 request.end();
@@ -66,7 +67,7 @@ request.end();
 });
 
 app.post("/failure",function(req,res){
-    res.redirect("/")
+    res.redirect("/");
 });
 
 
